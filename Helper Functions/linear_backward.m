@@ -9,7 +9,7 @@ function [dA_prev, dW, db] = linear_backward(dZ,cache)
     %dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     %db -- Gradient of the cost with respect to b (current layer l), same shape as b
     [A_prev, W, b] = values(cache);
-    m = A_prev.size(2);
+    m = size(A_prev,2);
 
     
     dW = 1/m*(dZ * A_prev');
@@ -17,8 +17,8 @@ function [dA_prev, dW, db] = linear_backward(dZ,cache)
     dA_prev = W'*dZ;
    
     
-    assert (dA_prev.size == A_prev.size)
-    assert (dW.size == W.size)
-    assert (db.size == b.size)
+    assert (size(dA_prev) == size(A_prev))
+    assert (size(dW) == size(W))
+    assert (size(db) == size(b))
 end
 

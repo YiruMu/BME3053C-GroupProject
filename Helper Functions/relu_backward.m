@@ -14,7 +14,7 @@ function dZ = relu_backward(dA, cache)
     % When z <= 0, you should set dz to 0 as well. 
     dZ(Z <= 0)= 0;
     
-    if (dZ.size ~= Z.size)
+    if (size(dZ) ~= size(Z))
         disp('Something is wrong with the relu function');
     end 
     

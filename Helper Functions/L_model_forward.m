@@ -28,6 +28,6 @@ function [AL, caches] = L_model_forward(X, parameters)
     caches.append(cache);
     
     
-    assert(AL.size == (1,X.size(2)));
+    assert(size(AL) == [1,size(X,2)]);
             
 end 

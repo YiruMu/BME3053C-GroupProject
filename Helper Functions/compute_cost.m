@@ -8,12 +8,12 @@ function cost = compute_cost(AL,Y)
     %Returns:
     %cost -- cross-entropy cost
     
-    m = Y.size(2);
+    m = size(Y,2);
 
     % Compute loss from aL and y.
     cost = -1/m*sum(Y*log(AL)+(1-Y)*log(1-AL));
     
     cost = squeeze(cost);      % To make sure cost's shape is what we expect (e.g. this turns [[17]] into 17).
-    assert(cost.size == []);
+    assert(size(cost) == []);
     
 end 

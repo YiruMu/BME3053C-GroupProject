@@ -13,7 +13,7 @@ function [Z, cache] = linear_forward(A,W,b)
     
     Z = (W*A)+b;
     
-    assert(Z.size == [W.size(1), A.size(2)]);
+    assert(size(Z) == [size(W,1), size(A,2)]);
     keySet = {'A','W','b'};
     valueSet = [A, W, b];
     cache = container.Map(keySet,valueSet);  % MATLab doesn't have tuple

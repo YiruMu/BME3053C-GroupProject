@@ -18,8 +18,8 @@ function grads = L_model_backward(AL, Y, caches)
     
     grads = {}; 
     L = length(caches); % the number of layers
-    m = AL.size(2);
-    Y = Y.reshape(AL.size); % after this line, Y is the same shape as AL
+    m = size(AL,2);
+    Y = reshape(Y, AL.size); % after this line, Y is the same shape as AL
     
     % Initializing the backpropagation
     dAL = -(Y./AL)-(1-Y)./(1-AL);

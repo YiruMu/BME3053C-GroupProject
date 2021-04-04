@@ -9,7 +9,7 @@ function p = predict(X,y,parameters)
     %p -- predictions for the given dataset X
     
     
-    m = X.size(2);
+    m = size(X,2);
     n = length(parameters); % 2 # number of layers in the neural network
     p = zeros(1,m);
     
@@ -18,7 +18,7 @@ function p = predict(X,y,parameters)
 
     
     %convert probas to 0/1 predictions
-    for i =1: probas.size(2) 
+    for i =1: size(probas, 2) 
         if (probas(1,i) > 0.5)
             p(1,i) = 1;
         else

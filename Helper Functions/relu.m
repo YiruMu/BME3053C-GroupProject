@@ -10,7 +10,7 @@ function [A, cache] = relu(Z)
    
 
     A = max(0,Z);
-    if (A.size ~= Z.size)
+    if (size(A) ~= size(Z))
         disp('Something is wrong with relu function');
     end 
     
