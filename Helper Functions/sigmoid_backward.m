@@ -14,7 +14,7 @@ function [dA,cache]= sigmoid_backward(dA, cache)
     s = 1./(1+exp(-Z));
     dZ = dA .* s .* (1-s);
     
-    assert (size(dZ) == size(Z));
+   % assert (size(dZ) == size(Z));
     
     
 end

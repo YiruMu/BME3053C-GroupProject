@@ -11,12 +11,12 @@ function [Z, cache] = linear_forward(A,W,b)
     %cache -- a MATLAB container map/python tuple containing "A", "W" and "b" ; stored for computing the backward pass efficiently
     
     
-    Z = (W*A)+b;
+    Z = W*A+b;
     
-    assert(size(Z) == [size(W,1), size(A,2)]);
+   
     keySet = {'A','W','b'};
-    valueSet = [A, W, b];
-    cache = container.Map(keySet,valueSet);  % MATLab doesn't have tuple
+    valueSet = {A, W, b};
+    cache = containers.Map(keySet,valueSet);  % MATLab doesn't have tuple
     
     
     

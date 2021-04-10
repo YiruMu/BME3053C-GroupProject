@@ -19,13 +19,10 @@ function parameters = initialize_parameters(n_x, n_h, n_y)
     b2 = zeros(n_y,1);
    
     
-    assert(size(W1) == [n_h, n_x]);
-    assert(size(b1) == [n_h, 1]);
-    assert(size(W2) == [n_y, n_h]);
-    assert(size(b2) == [n_y, 1]);
+    
     
     keySet = {'W1','b1','W2','b2'};
-    valueSet = [W1,b1,W2, b2];
+    valueSet = {W1, b1, W2, b2};
     parameters = containers.Map(keySet,valueSet);
     
 end 

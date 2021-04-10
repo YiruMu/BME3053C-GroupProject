@@ -24,7 +24,9 @@ function [A, cache] = linear_activation_forward(A_prev, W,b,activation)
         [A, activation_cache] = relu(Z);
     end 
     
-    assert (size(A) == [size(W,1), size(A_prev,2)]);
-    cache = container.Map(linear_cache, activation_cache);
+    keyset = {'linear_cache','activation_cache'};
+    valueset = {linear_cache, activation_cache};
+   
+    cache = containers.Map(keyset, valueset);
 
 end 

@@ -10,7 +10,11 @@ function [dA_prev, dW, db] = linear_activation_backward(dA, cache, activation)
     %dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     %db -- Gradient of the cost with respect to b (current layer l), same shape as b
     
-    [linear_cache, activation_cache] = values(cache)
+    
+   % [linear_cache, activation_cache] = values(cache);
+
+   linear_cache = cache('linear_cache');
+   activation_cache = cache('activation_cache');
     
     if (activation == "relu")
         dZ = relu_backward(dA,activation_cache)

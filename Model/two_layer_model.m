@@ -1,4 +1,4 @@
-function parameters = two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 3000, print_cost=False)
+function parameters = two_layer_model(X, Y, layers_dims, learning_rate, num_iterations, print_cost)
 
     %Implements a two-layer neural network: LINEAR->RELU->LINEAR->SIGMOID.
     
@@ -17,8 +17,13 @@ function parameters = two_layer_model(X, Y, layers_dims, learning_rate = 0.0075,
     rng(1) %random seed of 1 
     grads = {};
     costs = [];                              % to keep track of the cost
-    m = X.size(2);                           % number of examples
-    [n_x, n_h, n_y] = layers_dims; % needs to be redefined for signals 
+    m = size(X,2);    % number of examples
+    
+    
+     n_x = layers_dims(1);
+     n_h = layers_dims(2);
+     n_y = layers_dims(3);
+    %[n_x, n_h, n_y] = layers_dims; 
     
     % Initialize parameters dictionary, by calling the helper functions 
     parameters = initialize_parameters(n_x,n_h,n_y);
@@ -51,10 +56,9 @@ function parameters = two_layer_model(X, Y, layers_dims, learning_rate = 0.0075,
         
         
         % Set grads['dWl'] to dW1, grads['db1'] to db1, grads['dW2'] to dW2, grads['db2'] to db2
-        grads('dW1') = dW1;
-        grads('db1') = db1;
-        grads('dW2') = dW2;
-        grads('db2') = db2;
+        keys = {'dW1', 'db1', 'dW2','db2'};
+        values = {dW1, db1, dW2, db2};
+        grads = containers.Map (keys, values);
         % note: grads will be a map 
         
         % Update parameters.
@@ -68,19 +72,19 @@ function parameters = two_layer_model(X, Y, layers_dims, learning_rate = 0.0075,
         W2 = parameters("W2");
         b2 = parameters("b2");
         
-        %Print the cost every 100 training example
-        if (print_cost && mod(i,100) == 0)
+        %Print the cost every 5 training example
+        if (print_cost && mod(i,5) == 0)
             fprintf("Cost after iteration %f: %f",i, squeeze(cost));
         end 
-        if (print_cost && mod(i,100)==0)
-            costs.append(cost);
+        if (print_cost && mod(i,5)==0)
+            costs = [costs cost];
         end 
      end  
     %plot the cost
 
     plot(squeeze(costs));
     ylabel('cost')
-    xlabel('iterations (per hundreds)')
+    xlabel('iterations (per 5th)')
     title("Learning rate =" + num2str(learning_rate))
     shg;
     

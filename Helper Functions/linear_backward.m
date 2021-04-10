@@ -8,17 +8,29 @@ function [dA_prev, dW, db] = linear_backward(dZ,cache)
     %dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev
     %dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     %db -- Gradient of the cost with respect to b (current layer l), same shape as b
-    [A_prev, W, b] = values(cache);
+    %[A_prev, W, b] = values(cache);
+    
+    A_prev = cache('A');
+    W = cache('W');
+    b = cache('b');
     m = size(A_prev,2);
 
     
     dW = 1/m*(dZ * A_prev');
     db = 1/m*sum(dZ,2);
-    dA_prev = W'*dZ;
+    
+   
    
     
-    assert (size(dA_prev) == size(A_prev))
-    assert (size(dW) == size(W))
-    assert (size(db) == size(b))
+    tempW = repmat(W',1,size(dZ,1)/size(W,1)); %boardcasting
+    
+    
+    dA_prev = tempW*dZ; % W'*dZ
+    
+   
+    
+   % assert (size(dA_prev) == size(A_prev))
+   % assert (size(dW) == size(W))
+   % assert (size(db) == size(b))
 end
 

@@ -4,17 +4,58 @@ function [train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, 
     % first 154 samples are used as training set (about 90%) the rest 10%
     % are used as testing data set 
     data = readtable('data_new_extended');
-    train_set = data(1:154,:);
-    train_set_x_orig = train_set(:,1:end-1) ; % your train set features
-    train_set_y_orig = train_set(:,end); % your train set labels
-
-    test_set = data(155:end,:);
-    test_set_x_orig = test_set(:,1:end-1);  % your test set features
-    test_set_y_orig = test_set(:,end); % your test set labels
-
-    classes =  % the list of classes
+    train_set = data(2:154,2:end);
+    train_set_x_orig = table2array(train_set(:,1:end-1)) ; % your train set features
+    train_set_y_orig = string(table2array(train_set(:,end))); % your train set labels
+   
+    % to convert the lables to 1 and 0; 
+    for i = 1:length(train_set_y_orig)
+        if train_set_y_orig(i) == 'covid'  % 1 is covid and 0 is non-covid 
+            train_set_y_orig(i) = 1;
+        else 
+            train_set_y_orig(i) = 0;
+        end 
+    end 
+    train_set_y_orig = str2double(train_set_y_orig);
+    % to normalize the traning set data 
+    for i = 1: size(train_set_x_orig,2) 
+        temp = train_set_x_orig(:,i);
+        maximum = max(temp);
+        minimum = min(temp);
+        for j = 1:length(temp)
+            temp(j) = (temp(j)-minimum )/(maximum - minimum);
+        end 
+        train_set_x_orig(:,i) = temp; 
+    end 
+    
+    % extract testing data 
+    test_set = data(155:end,2:end);
+    test_set_x_orig = table2array( test_set(:,1:end-1));  % your test set features
+    test_set_y_orig = string(table2array(test_set(:,end))); % your test set labels
+    for i = 1:length(test_set_y_orig)
+       if (test_set_y_orig(i) == 'covid')
+           test_set_y_orig(i) = 1;
+        else 
+           test_set_y_orig(i) = 0;
+        end 
+    end 
+    test_set_y_orig = str2double(test_set_y_orig); 
+    
+    % normalize the testing data 
+    for i = 1: size(test_set_x_orig,2) 
+        temp = test_set_x_orig(:,i);
+        maximum = max(temp);
+        minimum = min(temp);
+        for j = 1:length(temp)
+            temp(j) = (temp(j)-minimum )/(maximum - minimum);
+        end 
+        test_set_x_orig = temp; 
+    end 
+    
+    
+    
+    classes = ["covid","not_covid"]; % the list of classes
      
-    train_set_y_orig = reshape(train_set_y_orig, [1, size(train_set_y_orig,1)]);
-    test_set_y_orig = reshape(test_set_y_orig, [1, size(test_set_y_orig,1)]);
+    
     
 end 

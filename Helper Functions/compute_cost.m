@@ -11,9 +11,9 @@ function cost = compute_cost(AL,Y)
     m = size(Y,2);
 
     % Compute loss from aL and y.
-    cost = -1/m*sum(Y*log(AL)+(1-Y)*log(1-AL));
+    cost = -1/m*sum(Y.*log(AL)+(1-Y).*log(1-AL));
     
     cost = squeeze(cost);      % To make sure cost's shape is what we expect (e.g. this turns [[17]] into 17).
-    assert(size(cost) == []);
+    %assert(size(cost) == [][]);
     
 end 
