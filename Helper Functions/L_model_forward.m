@@ -16,18 +16,21 @@ function [AL, caches] = L_model_forward(X, parameters)
     L = length(parameters); % 2                  # number of layers in the neural network
     
     % Implement [LINEAR -> RELU]*(L-1). Add "cache" to the "caches" list.
-    for i=1:L 
+    for i=1:2 
         A_prev = A; 
-        [A, cache] = linear_activation_forward(A,parameters('W'+num2str(i)),parameters('b'+num2str(i)),'relu');
-        caches.append(cache);
+        W = parameters(strcat('W',num2str(i)));
+        b = parameters(strcat('b',num2str(i)));
+        [A, cache] = linear_activation_forward(A,W,b,"relu");
+        caches = [caches; cache];
     end 
     
     % Implement LINEAR -> SIGMOID. Add "cache" to the "caches" list.
    
-    [AL, cache] = linear_activation_forward(A,parameters('W'+num2str(L)),parameters('b'+num2str(L)),'sigmoid');
-    caches.append(cache);
+    [AL, cache] = linear_activation_forward(A,parameters(strcat('W',num2str(L/2))),parameters(strcat('b',num2str(L/2))),"sigmoid");
+    % need to be modified, 2 is hard coded for now 
+    caches = [cachces; cache];
     
     
-    assert(size(AL) == [1,size(X,2)]);
+   % assert(size(AL) == [1,size(X,2)]);
             
 end 

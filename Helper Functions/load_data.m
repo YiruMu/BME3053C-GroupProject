@@ -27,6 +27,11 @@ function [train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, 
         end 
         train_set_x_orig(:,i) = temp; 
     end 
+    % train set 15 covid and 15 non-covid 
+   % train_set_x = [train_set_x_orig(1:3,:);train_set_x_orig(4:6,:); train_set_x_orig(8,:);train_set_x_orig(10:12,:);
+       % train_set_x_orig(14:18,:);train_set_x_orig(20:22,:);train_set_x_orig(23:36,:)];
+   % train_set_y = [ train_set_y_orig(1:3,:);train_set_y_orig(4:6,:); train_set_y_orig(8,:);train_set_y_orig(10:12,:);
+       % train_set_y_orig(14:18,:);train_set_y_orig(20:22,:);train_set_y_orig(23:36,:)];
     
     % extract testing data 
     test_set = data(155:end,2:end);
@@ -52,7 +57,9 @@ function [train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, 
         test_set_x_orig(:,i) = temp; 
     end 
     
-    
+    % test set 4 covid patient + 4 non-covid patient 
+   % test_set_x = [ train_set_x_orig(7,:);  train_set_x_orig(9,:); train_set_x_orig(13,:); train_set_x_orig(19,:); test_set_x_orig(1:4,:)];
+   % test_set_y = [ train_set_y_orig(7,:);  train_set_y_orig(9,:); train_set_y_orig(13,:); train_set_y_orig(19,:); test_set_y_orig(1:4,:)];
     
     classes = ["covid","not_covid"]; % the list of classes
      

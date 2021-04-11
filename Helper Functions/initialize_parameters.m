@@ -13,9 +13,9 @@ function parameters = initialize_parameters(n_x, n_h, n_y)
     
     
     rng(1);
-    W1 = randn(n_h,n_x).*0.01;
+    W1 = randn(n_h,n_x)*0.01;
     b1 = zeros(n_h,1);
-    W2 = randn(n_y,n_h).*0.01;
+    W2 = randn(n_y,n_h)*0.01;
     b2 = zeros(n_y,1);
    
     

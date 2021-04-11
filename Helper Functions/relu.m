@@ -9,7 +9,7 @@ function [A, cache] = relu(Z)
     %cache -- a MATLAB map(i.e. python dictionary) containing "A" ; stored for computing the backward pass efficiently
    
 
-    A = max(0,Z);
+    A = max(zeros(size(Z,1),size(Z,2)),Z);
     if (size(A) ~= size(Z))
         disp('Something is wrong with relu function');
     end 
