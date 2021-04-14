@@ -29,7 +29,7 @@ function p = predict(X,y,parameters)
     %print results
     %print ("predictions: " + num2str(p))
     %print ("true labels: " + num2str(y))
-    fprintf("Accuracy: "  + num2str(sum((p == y)/m))); 
+    fprintf("Accuracy: %f", sum((p == y)/m)); 
         
 end
 
