@@ -11,7 +11,7 @@ function [AL, caches] = L_model_forward(X, parameters)
                 %every cache of linear_activation_forward() (there are L-1 of them, indexed from 0 to L-1)
     
 
-    caches = containers.Map;
+    
     A = X;
     L = length(parameters); % 4                 # number of layers in the neural network
     
@@ -21,15 +21,20 @@ function [AL, caches] = L_model_forward(X, parameters)
         W = parameters(strcat('W',num2str(i)));
         b = parameters(strcat('b',num2str(i)));
         [A, cache] = linear_activation_forward(A_prev,W,b,"relu");
-        key = {strcat('cache',num2str(i))}
-        caches = [caches; cache];
+        
+        linearCache = cache('linear_cache');
+        activationCache = cache('activation_cache');
+        
+        caches = [caches; linearCache, activationCache]; 
     end 
     
     % Implement LINEAR -> SIGMOID. Add "cache" to the "caches" list.
    
     [AL, cache] = linear_activation_forward(A,parameters(strcat('W',num2str(L/2))),parameters(strcat('b',num2str(L/2))),"sigmoid");
     % need to be modified, 2 is hard coded for now 
-    caches = [caches; cache];
+    linearCache = cache('linear_cache');
+    activationCache = cache('activation_cache');
+     caches = [caches; linearCache, activationCache]; 
     
     
    % assert(size(AL) == [1,size(X,1)]);

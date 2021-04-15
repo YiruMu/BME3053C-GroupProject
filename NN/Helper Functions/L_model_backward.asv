@@ -28,7 +28,7 @@ function grads = L_model_backward(AL, Y, caches)
     % Lth layer (SIGMOID -> LINEAR) gradients. Inputs: "dAL, current_cache". Outputs: "grads["dAL-1"], grads["dWL"], grads["dbL"]
     
     temp = caches(L);
-    tempcurrent_cache = containers.Map({'linear_cache','activation_cache'},{temp}); 
+     tempcurrent_cache = containers.Map({})
     [grads(strcat('dA', num2str(L))), grads(strcat('dW', num2str(L-1))), grads(strcat('db', num2str(L-1)))] = linear_activation_backward(dAL,tempcurrent_cache,"sigmoid");
     
     
