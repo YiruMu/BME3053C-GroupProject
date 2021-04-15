@@ -3,12 +3,12 @@ function parameters = two_layer_model(X, Y, layers_dims, learning_rate, num_iter
     %Implements a two-layer neural network: LINEAR->RELU->LINEAR->SIGMOID.
     
     %Arguments:
-    %X -- input data, of shape (n_x, number of examples)
-    %Y -- true "label" vector (containing 1 if COVID patient, 0 if non-COVID patient), of shape (1, number of examples)
+    %X -- input data, of shape (n_x, number of examples) p.s. flipped 
+    %Y -- true "label" vector (containing 1 if COVID patient, 0 if non-COVID patient), of shape ( 1,number of examples)
     %layers_dims -- dimensions of the layers (n_x, n_h, n_y)
     %num_iterations -- number of iterations of the optimization loop
     %learning_rate -- learning rate of the gradient descent update rule
-    %print_cost -- If set to True, this will print the cost every 100 iterations 
+    %print_cost -- If set to True, this will print the cost every 5 iterations 
     
     %Returns:
     %parameters -- a dictionary/map containing W1, W2, b1, and b2
@@ -24,7 +24,7 @@ function parameters = two_layer_model(X, Y, layers_dims, learning_rate, num_iter
      n_y = layers_dims(3);
     %[n_x, n_h, n_y] = layers_dims; 
     
-    % Initialize parameters dictionary, by calling the helper functions 
+    % Initialize parameters map, by calling the helper functions 
     parameters = initialize_parameters(n_x,n_h,n_y);
     
     

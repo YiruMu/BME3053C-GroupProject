@@ -1,9 +1,9 @@
 function [A, cache] = sigmoid(Z)
   
-    %Implements the sigmoid activation in numpy
+    %Implements the sigmoid activation 
     
     %Arguments:
-    %Z -- numpy array of any shape
+    %Z --  array of any shape
     
     %Returns:
     %A -- output of sigmoid(z), same shape as Z

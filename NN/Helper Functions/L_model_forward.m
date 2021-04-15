@@ -2,7 +2,7 @@ function [AL, caches] = L_model_forward(X, parameters)
 %Implement forward propagation for the [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID computation
     
    % Arguments:
-   %X -- data, numpy array of shape (input size, number of examples)
+   %X -- data, array of shape (input size, number of examples)
    %parameters -- output of initialize_parameters_deep()
     
    %Returns:
@@ -11,9 +11,9 @@ function [AL, caches] = L_model_forward(X, parameters)
                 %every cache of linear_activation_forward() (there are L-1 of them, indexed from 0 to L-1)
     
 
-    caches = [];
+    caches = containers.Map;
     A = X;
-    L = length(parameters); % 2                  # number of layers in the neural network
+    L = length(parameters); % 4                 # number of layers in the neural network
     
     % Implement [LINEAR -> RELU]*(L-1). Add "cache" to the "caches" list.
     for i=1:L/2-1
@@ -21,6 +21,7 @@ function [AL, caches] = L_model_forward(X, parameters)
         W = parameters(strcat('W',num2str(i)));
         b = parameters(strcat('b',num2str(i)));
         [A, cache] = linear_activation_forward(A_prev,W,b,"relu");
+        key = {strcat('cache',num2str(i))}
         caches = [caches; cache];
     end 
     
@@ -31,6 +32,6 @@ function [AL, caches] = L_model_forward(X, parameters)
     caches = [caches; cache];
     
     
-   % assert(size(AL) == [1,size(X,2)]);
+   % assert(size(AL) == [1,size(X,1)]);
             
 end 

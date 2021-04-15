@@ -3,12 +3,12 @@ function [Z, cache] = linear_forward(A,W,b)
 
     %Arguments:
     %A -- activations from previous layer (or input data): (size of previous layer, number of examples)
-    %W -- weights matrix: numpy array of shape (size of current layer, size of previous layer)
-    %b -- bias vector, numpy array of shape (size of the current layer, 1)
+    %W -- weights matrix: array of shape (size of current layer, size of previous layer)
+    %b -- bias vector, array of shape (size of the current layer, 1)
 
     %Returns:
     %Z -- the input of the activation function, also called pre-activation parameter 
-    %cache -- a MATLAB container map/python tuple containing "A", "W" and "b" ; stored for computing the backward pass efficiently
+    %cache -- a MATLAB container map containing "A", "W" and "b" ; stored for computing the backward pass efficiently
     
     
     Z = W*A+b;

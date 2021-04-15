@@ -2,8 +2,9 @@ function cost = compute_cost(AL,Y)
     %Implement the cost function defined by equation (7).
 
     %Arguments:
-    %AL -- probability vector corresponding to your label predictions, shape (1, number of examples)
-    %Y -- true "label" vector (for example: containing 0 if non-cat, 1 if cat), shape (1, number of examples)
+    %AL -- probability vector corresponding to your label predictions,
+    %shape (1, number of examples) i.e. 153
+    %Y -- true "label" vector (for example: containing 0 if non-COVID, 1 if CVOID), shape ( number of examples,1)
 
     %Returns:
     %cost -- cross-entropy cost

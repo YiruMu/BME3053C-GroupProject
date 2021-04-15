@@ -10,15 +10,15 @@ function p = predict(X,y,parameters)
     
     
     m = size(X,2);
-    n = length(parameters); % 2 # number of layers in the neural network
+    n = length(parameters)/2; % 2 # number of layers in the neural network
     p = zeros(1,m);
     
     %Forward propagation
     [probas, caches] = L_model_forward(X, parameters);
 
-    
+    disp(size(probas))
     %convert probas to 0/1 predictions
-    for i =1: size(probas, 2) 
+    for i =1: size(probas,2) 
         if (probas(1,i) > 0.5)
             p(1,i) = 1;
         else

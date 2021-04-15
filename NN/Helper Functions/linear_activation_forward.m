@@ -3,8 +3,8 @@ function [A, cache] = linear_activation_forward(A_prev, W,b,activation)
 
     %Arguments:
     %A_prev -- activations from previous layer (or input data): (size of previous layer, number of examples)
-    %W -- weights matrix: numpy array of shape (size of current layer, size of previous layer)
-    %b -- bias vector, numpy array of shape (size of the current layer, 1)
+    %W -- weights matrix: array of shape (size of current layer, size of previous layer)
+    %b -- bias vector, array of shape (size of the current layer, 1)
     %activation -- the activation to be used in this layer, stored as a text string: "sigmoid" or "relu"
 
     %Returns:
