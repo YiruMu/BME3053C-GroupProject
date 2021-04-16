@@ -17,7 +17,7 @@ function grads = L_model_backward(AL, Y, caches)
              %grads["db" + str(l)] = ... 
     
     grads = {}; 
-    L = size(caches); % the number of layers
+    L = length(caches); % the number of layers
     m = size(AL,2);
     Y = reshape(Y, size(AL)); % after this line, Y is the same shape as AL
     
@@ -27,18 +27,20 @@ function grads = L_model_backward(AL, Y, caches)
     
     % Lth layer (SIGMOID -> LINEAR) gradients. Inputs: "dAL, current_cache". Outputs: "grads["dAL-1"], grads["dWL"], grads["dbL"]
     
-    temp = caches(L);
-    tempcurrent_cache = containers.Map({'linear_cache','activation_cache'},{temp}); 
+    temp1 = caches{L-1};
+    temp2 = caches{L}
+    tempcurrent_cache = containers.Map({'linear_cache','activation_cache'},{temp1,temp2}); 
     [grads(strcat('dA', num2str(L))), grads(strcat('dW', num2str(L-1))), grads(strcat('db', num2str(L-1)))] = linear_activation_backward(dAL,tempcurrent_cache,"sigmoid");
     
     
     % Loop from l=L-2 to l=0
-    for i = L:-1:1
+    for i = L:-1:2
         % lth layer: (RELU -> LINEAR) gradients.
         % Inputs: "grads["dA" + str(l + 1)], current_cache". Outputs: "grads["dA" + str(l)] , grads["dW" + str(l + 1)] , grads["db" + str(l + 1)] 
         
-        temp = caches(i,:);
-        current_cache = containers.Map({'linear_cache','activation_cache'},{ temp});
+        temp1 = caches{i-1};
+        temp2 = caches{i}
+        current_cache = containers.Map({'linear_cache','activation_cache'},{ temp1,temp2});
         [dA_prev_temp, dW_temp, db_temp] = linear_activation_backward(grads(strcat('dA',num2str(i))),current_cache,"relu");
         grads(strcat('dA',num2str(i-1))) = dA_prev_temp;
         grads(strcat('dW', num2str(i))) = dW_temp;

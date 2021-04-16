@@ -14,7 +14,7 @@ function p = predict(X,y,parameters)
     p = zeros(1,m);
     
     %Forward propagation
-    [probas, caches] = L_model_forward(X, parameters);
+    [probas, ~] = L_model_forward(X, parameters);
     
     
     %convert probas to 0/1 predictions
