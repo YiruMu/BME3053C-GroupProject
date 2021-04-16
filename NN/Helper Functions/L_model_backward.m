@@ -30,8 +30,10 @@ function grads = L_model_backward(AL, Y, caches)
     temp1 = caches{L-1};
     temp2 = caches{L}
     tempcurrent_cache = containers.Map({'linear_cache','activation_cache'},{temp1,temp2}); 
-    [grads(strcat('dA', num2str(L))), grads(strcat('dW', num2str(L-1))), grads(strcat('db', num2str(L-1)))] = linear_activation_backward(dAL,tempcurrent_cache,"sigmoid");
-    
+    [tempdA, tempdW, tempdb] = linear_activation_backward(dAL,tempcurrent_cache,"sigmoid");
+    grads(strcat('dA', num2str(L))) = tempdA;
+    grads(strcat('dW', num2str(L-1))) = tempdW;
+    grads(strcat('db', num2str(L-1))) = tempdb;
     
     % Loop from l=L-2 to l=0
     for i = L:-1:2

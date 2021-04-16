@@ -19,7 +19,7 @@ function p = predict(X,y,parameters)
     
     %convert probas to 0/1 predictions
     for i =1: size(probas,2) 
-        if (probas(1,i) > 0.5)
+        if (probas(1,i) > 0.7)
             p(1,i) = 1;
         else
             p(1,i) = 0;
