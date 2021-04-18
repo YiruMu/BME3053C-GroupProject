@@ -6,8 +6,8 @@ The broad scope of our project is to use machine learning to be able to detect w
 
 ## Technologies and Launch 
 Project is created with:
-  MATLAB R2020a and above 
-  MATLAB toolbox needed: Signal Processing Toolbox
+* MATLAB R2020a and above 
+* MATLAB toolbox needed: Signal Processing Toolbox
 
 
 
